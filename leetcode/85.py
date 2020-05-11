@@ -1,24 +1,33 @@
 # -*- coding: utf-8 -*-
-matrix = [
-  ["1","0","1","0","0"],
-  ["1","0","1","1","1"],
-  ["1","1","1","1","1"],
-  ["1","0","0","1","0"]
-]
+matrix =[["0","1"],["1","0"]]
 
-maxarea = 0
+def maxWidth(widths):
+    if not widths:
+        return 0
+    maxArea = 0
+    w_len = len(widths)
+    stack = [-1]
+    for row_i in range(w_len):
+        while stack[-1] != -1 and widths[row_i] <= widths[stack[-1]]:
+            maxArea = max(maxArea, widths[stack.pop()] * (row_i - stack[-1] -1))
+        stack.append(row_i)
 
-dp = [[0] * len(matrix[0]) for _ in range(len(matrix))]
+    while stack[-1] != -1:
+        maxArea = max(maxArea,  widths[stack.pop()] * (row_i - stack[-1] ))
+    return maxArea
 
-for i in range(len(matrix)):
-    for j in range(len(matrix[0])):
-        if matrix[i][j] == "0": continue
+maxArea = 0
+
+row_len = len(matrix)
+col_len = len(matrix[0])
+dp = [0] * len(matrix[0])
+for i in range(row_len):
+    for j in range(col_len):
+        if matrix[i][j] == "1":
+            dp[j] = dp[j] + 1
         else:
-            width = dp[i][j] = dp[i][j-1] + 1 if j else 1
-        
-        for k in range(i, -1 ,-1 ):
-            width = min(dp[k][j], width)
-            maxarea = max(maxarea, width * (i - k + 1))
+            dp[j] = 0
+    maxArea = max(maxArea, maxWidth(dp))
 
-ans = maxarea
-            
+ans = maxArea
+

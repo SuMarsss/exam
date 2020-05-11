@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
-heights = [2,1,5,6,2,3]
-llen = len(heights)
-maxArea = heights[0]
-for i in range(llen):
-    h = heights[i]
-    for left in range(i,-1,-1):
-        h = min(heights[left], h)
-        maxArea = max(maxArea, h*(i - left + 1))
+heights = [1,1,3,1]
 
+stack = [-1]
 
-ans =  maxArea
+maxarea = 0
+for i in range(len(heights)):
+
+    while stack[-1] != -1 and heights[stack[-1]] >= heights[i]:
+        maxarea = max(maxarea, heights[stack.pop()] * (i - stack[-1] - 1))
+    stack.append(i)
+
+while stack[-1] != -1:
+    maxarea = max(maxarea, heights[stack.pop()] * (len(heights) - stack[-1] - 1))
+ans =  maxarea
