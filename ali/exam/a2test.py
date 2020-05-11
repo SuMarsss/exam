@@ -32,5 +32,22 @@ while slist:
     if findF == 0 and val < Flags[row][col]:
             val = Flags[row][col] 
   
-print(val)     
-        
+print(val) 
+
+
+#arr = nums
+#N, M = len(arr), len(arr[0])
+# 
+#dp = [[0]*M for i in range(N)]
+# 
+#dp[0][0] = arr[0][0]
+#for i in range(N):
+#    dp[i][0] = dp[i-1][0] + arr[i][0]
+#for j in range(M):
+#    dp[0][j] = dp[0][j-1] + arr[0][j]
+# 
+#for i in range(1,N):
+#    for j in range(1,M):
+#        dp[i][j] = min(dp[i][j-1], dp[i-1][j]) + arr[i][j]
+# 
+#print( dp[N-1][M-1] )   
