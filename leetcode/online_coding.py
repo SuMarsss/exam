@@ -7,7 +7,7 @@ input.sort(key=lambda x:x[0])
 # maxs = -float("inf")
 ans = []
 maxs = -float("inf") 
-tmp = input[0] if input[0] else
+tmp = input[0] if input[0] else []
 for i in range(len(input)-1):  
     
     if input[i+1][0] <=  tmp[1]:  # 问题2
@@ -19,4 +19,3 @@ for i in range(len(input)-1):
         ans.append(tmp)
         tmp = input[i+1]
 ans.append(tmp)
-continue
