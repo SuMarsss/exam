@@ -29,15 +29,19 @@ def quick_sort(nums):
     return (nums, p)
 
 
-def sort_k(nums, k):
-    p = -1
-    while k != len(nums[p:]):
-        nums, p = quick_sort(nums[p+1:])
-    return nums[p]
+def sort_k(nums, p=-1):
+    if len(nums) == 1:
+        return nums
+    left,p1 =quick_sort(nums[:p])
+    right,p2 = quick_sort(nums[p+1:])
+    sort_k(left,p1)
+    sort_k(right,p2)
+    return nums
 
 
 nums =[3,9,10,2,7]
 k=2
-ans = sort_k(nums, k)
+quick_sort(nums)
+ans = sort_k(nums)
 
 
