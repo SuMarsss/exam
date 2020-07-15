@@ -1,0 +1,16 @@
+import time
+
+def time_calc(func):
+    def wrapper(*args, **kargs):
+        start_time = time.time()
+        f = func(*args)
+        exec_time = time.time() - start_time
+        print("time:", exec_time*100)
+        return f
+    return wrapper
+
+def add(a, b):
+    return a + b
+
+add = time_calc(add)
+add(8,10)
