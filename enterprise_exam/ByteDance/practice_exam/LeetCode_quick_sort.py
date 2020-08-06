@@ -22,5 +22,21 @@ class Solution:
         self.randomized_quicksort(nums, 0, len(nums) - 1)
         return nums
 
-nums =[5, 3,8,2, 4]
-Solution().sortArray(nums)
+nums =[5,2,3,1]
+# Solution().sortArray(nums)
+
+
+def quick_sort(nums):
+    if len(nums) <= 1:
+        return nums
+    base = nums[0]
+
+    L, R = [], []
+    for i in nums[1:]:
+        if i < base:
+            L.append(i)
+        else:
+            R.append(i)
+    return quick_sort(L) + [base] + quick_sort(R)
+
+ans = quick_sort(nums)
